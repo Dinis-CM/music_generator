@@ -4,3 +4,4 @@ from .composition import Composition
 from .track import Track
 from .note_message import NoteMessage
 from .midi_instrument_table import MIDI_INSTRUMENT_TABLE
+from .probability_presets import PROBABILITY_PRESETS_TABLE

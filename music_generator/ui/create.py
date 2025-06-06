@@ -2,13 +2,10 @@ import tkinter as tk
 import ttkbootstrap as ttk
 from music_generator.structures import Track
 from music_generator.structures.midi_instrument_table import MIDI_INSTRUMENT_TABLE
-from tkinter import messagebox
+from music_generator.structures.probability_presets import PROBABILITY_PRESETS_TABLE
 
 
 def create_window(height, width, title):
-    """
-    Create a Tkinter window with the specified height, width, and title.
-    """
     root = ttk.Window(themename="darkly")
     root.title(title)
     root.geometry(f"{width}x{height}")
@@ -126,51 +123,19 @@ def create_probability_table(parent, track):
     return prob_bars, prob_entries
 
 def create_probability_preset_menu(frame, track, prob_bars, prob_entries):
-    presets = [
-        "Uniform",
-        "Linear Increasing",
-        "Linear Decreasing",
-        "Single Peak (Middle)",
-        "Single Peak (First)",
-        "Single Peak (Last)"
-    ]
-
-    def apply_preset(preset):
-        n = len(track.probabilities)
-        if n == 0:
+    def apply_preset(preset_name):
+        preset_func = PROBABILITY_PRESETS_TABLE.get(preset_name)
+        if not preset_func:
+            ttk.messagebox.showerror("Error", "Unknown preset")
             return
-        if preset == "Uniform":
-            vals = [1/n] * n
-        elif preset == "Linear Increasing":
-            vals = [i+1 for i in range(n)]
-            s = sum(vals)
-            vals = [v/s for v in vals]
-        elif preset == "Linear Decreasing":
-            vals = [n-i for i in range(n)]
-            s = sum(vals)
-            vals = [v/s for v in vals]
-        elif preset == "Single Peak (Middle)":
-            vals = [0]*n
-            mid = n//2
-            vals[mid] = 1.0
-        elif preset == "Single Peak (First)":
-            vals = [0]*n
-            vals[0] = 1.0
-        elif preset == "Single Peak (Last)":
-            vals = [0]*n
-            vals[-1] = 1.0
-        else:
-            messagebox.showerror("Error", "Unknown preset")
-            return
-
-        for i, v in enumerate(vals):
-            track.probabilities[i] = v
+        preset_func(track)
+        for i, v in enumerate(track.probabilities):
             prob_entries[i].set(str(round(v, 4)))
             prob_bars[i]['value'] = v
 
     preset_menu = tk.Menu(frame, tearoff=0)
-    for p in presets:
-        preset_menu.add_command(label=p, command=lambda val=p: apply_preset(val))
+    for preset_name in PROBABILITY_PRESETS_TABLE.keys():
+        preset_menu.add_command(label=preset_name, command=lambda val=preset_name: apply_preset(val))
 
     menubutton = ttk.Menubutton(frame, text="Probability Presets", menu=preset_menu)
     menubutton.pack(pady=10)

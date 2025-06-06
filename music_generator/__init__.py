@@ -4,7 +4,8 @@ from .structures import(
     NoteMessage,
     Track,
     Composition,
-    MIDI_INSTRUMENT_TABLE
+    MIDI_INSTRUMENT_TABLE,
+    PROBABILITY_PRESETS_TABLE
 )
 
 from .files import(
