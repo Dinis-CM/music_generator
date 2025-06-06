@@ -9,6 +9,7 @@ class Track:
         self.input_excerpts = deepcopy(input_excerpts)
         self.excerpts = []
         self.octave = 0
+        self.probabilities = []
 
     def set_name(self, name):
         self.name = name
@@ -21,13 +22,14 @@ class Track:
         self.midi_number = 0
 
     def set_probabilities(self, probabilities):
+        if len(probabilities) != len(self.input_excerpts.excerpts): return
         self.probabilities = probabilities
 
     def set_discrete_uniform_probabilities(self):
-        if not self.excerpts: return
-        probability = 1 / len(self.excerpts)
-        for e in self.excerpts:
-            e.probability = probability
+        if not self.input_excerpts:
+            return
+        probability = 1 / len(self.input_excerpts.excerpts)
+        self.probabilities = [probability] * len(self.input_excerpts.excerpts)
 
     def set_octave(self, octave):
         self.octave = octave

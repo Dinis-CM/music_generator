@@ -6,7 +6,7 @@ def import_excerpts(folder_path):
     input_excerpts = ExcerptCollection("Input_Excerpts")
     input_excerpts.add_silence_excerpt()
 
-    for x in os.listdir(folder_path):
+    for x in sorted(os.listdir(folder_path)):  # Sort files alphabetically
         if x.endswith(".mid"):
             excerpt = Excerpt(x[:-4])
             mid = MidiFile(os.path.join(folder_path, x)) 

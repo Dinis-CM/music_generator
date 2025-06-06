@@ -16,9 +16,13 @@ MidiFile(type=1, ticks_per_beat=480, tracks=[
     Message('control_change', channel=0, control=91, value=0, time=0),
     Message('control_change', channel=0, control=93, value=0, time=0),
     MetaMessage('midi_port', port=0, time=0),
-    Message('note_on', channel=0, note=60, velocity=80, time=1680),
-    Message('note_on', channel=0, note=60, velocity=0, time=119),
+    Message('note_on', channel=0, note=60, velocity=80, time=0),
+    Message('note_on', channel=0, note=60, velocity=0, time=479),
     Message('note_on', channel=0, note=60, velocity=80, time=1),
-    Message('note_on', channel=0, note=60, velocity=0, time=119),
+    Message('note_on', channel=0, note=60, velocity=0, time=479),
+    Message('note_on', channel=0, note=60, velocity=80, time=1),
+    Message('note_on', channel=0, note=60, velocity=0, time=479),
+    Message('note_on', channel=0, note=60, velocity=80, time=1),
+    Message('note_on', channel=0, note=60, velocity=0, time=479),
     MetaMessage('end_of_track', time=1)])
 ])

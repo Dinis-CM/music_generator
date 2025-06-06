@@ -1,3 +1,8 @@
 
 *.pyc
 *.pyc
+*.pyc
+music_generator/structures/__pycache__/midi_instrument_table.cpython-313.pyc
+music_generator/files/__pycache__/import_excerpts.cpython-313.pyc
+music_generator/files/__pycache__/export_file.cpython-313.pyc
+music_generator/__pycache__/__init__.cpython-313.pyc

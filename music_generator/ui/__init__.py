@@ -5,5 +5,5 @@ from .create import(
     create_octave_list,
     create_instrument_list,
     create_probability_table,
-    create_probability_preset_list
+    create_probability_preset_menu
 )
