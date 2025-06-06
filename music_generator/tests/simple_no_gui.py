@@ -12,11 +12,12 @@ def simple_no_gui_test():
 
     for n in range(number_tracks):
         name = ['Bassoon', 'French Horn', 'Clarinet','Flute']
-        track = Track()
-        track.set_probabilities([getattr(e, "probability", 1/len(input_excerpts.excerpts)) for e in input_excerpts.excerpts])
+        track = Track(input_excerpts=input_excerpts.excerpts)
+        track.set_discrete_uniform_probabilities()
+        print(track.probabilities)
         for chosen_excerpt in random.choices(input_excerpts.excerpts, weights=track.probabilities, k=length): 
             track.add_excerpt(chosen_excerpt)        
-        track.fix_octave(n+2)
+        track.set_octave(n+2)
         track.set_name(name[n])
         composition.add_track(track)
 

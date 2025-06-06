@@ -1,161 +1,164 @@
+# MIDI instrument categories and their instruments with MIDI numbers
+
 MIDI_INSTRUMENT_TABLE = {
-    # Piano
-    "acoustic grand piano": 0,
-    "bright acoustic piano": 1,
-    "electric grand piano": 2,
-    "honky-tonk piano": 3,
-    "electric piano 1": 4,
-    "electric piano 2": 5,
-    "harpsichord": 6,
-    "clavinet": 7,
-
-    # Chromatic Percussion
-    "celesta": 8,
-    "glockenspiel": 9,
-    "music box": 10,
-    "vibraphone": 11,
-    "marimba": 12,
-    "xylophone": 13,
-    "tubular bells": 14,
-    "dulcimer": 15,
-
-    # Organ
-    "drawbar organ": 16,
-    "percussive organ": 17,
-    "rock organ": 18,
-    "church organ": 19,
-    "reed organ": 20,
-    "accordion": 21,
-    "harmonica": 22,
-    "bandoneon": 23,
-
-    # Guitar
-    "acoustic guitar (nylon)": 24,
-    "acoustic guitar (steel)": 25,
-    "electric guitar (jazz)": 26,
-    "electric guitar (clean)": 27,
-    "electric guitar (muted)": 28,
-    "electric guitar (overdrive)": 29,
-    "electric guitar (distortion)": 30,
-    "electric guitar (harmonics)": 31,
-
-    # Bass
-    "acoustic bass": 32,
-    "electric bass (finger)": 33,
-    "electric bass (picked)": 34,
-    "electric bass (fretless)": 35,
-    "slap bass 1": 36,
-    "slap bass 2": 37,
-    "synth bass 1": 38,
-    "synth bass 2": 39,
-
-    # Strings
-    "violin": 40,
-    "viola": 41,
-    "cello": 42,
-    "contrabass": 43,
-    "tremolo strings": 44,
-    "pizzicato strings": 45,
-    "orchestral harp": 46,
-    "timpani": 47,
-
-    # Ensemble
-    "string ensemble 1": 48,
-    "string ensemble 2": 49,
-    "synth strings 1": 50,
-    "synth strings 2": 51,
-    "choir aahs": 52,
-    "voice oohs": 53,
-    "synth voice": 54,
-    "orchestra hit": 55,
-
-    # Brass
-    "trumpet": 56,
-    "trombone": 57,
-    "tuba": 58,
-    "muted trumpet": 59,
-    "french horn": 60,
-    "brass section": 61,
-    "synth brass 1": 62,
-    "synth brass 2": 63,
-
-    # Reed
-    "soprano sax": 64,
-    "alto sax": 65,
-    "tenor sax": 66,
-    "baritone sax": 67,
-    "oboe": 68,
-    "english horn": 69,
-    "bassoon": 70,
-    "clarinet": 71,
-
-    # Pipe
-    "piccolo": 72,
-    "flute": 73,
-    "recorder": 74,
-    "pan flute": 75,
-    "blown bottle": 76,
-    "shakuhachi": 77,
-    "whistle": 78,
-    "ocarina": 79,
-
-    # Synth Lead
-    "lead 1 (square)": 80,
-    "lead 2 (sawtooth)": 81,
-    "lead 3 (calliope)": 82,
-    "lead 4 (chiff)": 83,
-    "lead 5 (charang)": 84,
-    "lead 6 (voice)": 85,
-    "lead 7 (fifths)": 86,
-    "lead 8 (bass and lead)": 87,
-
-    # Synth Pad
-    "pad 1 (new age)": 88,
-    "pad 2 (warm)": 89,
-    "pad 3 (polysynth)": 90,
-    "pad 4 (choir)": 91,
-    "pad 5 (bowed)": 92,
-    "pad 6 (metallic)": 93,
-    "pad 7 (halo)": 94,
-    "pad 8 (sweep)": 95,
-
-    # Synth Effects
-    "fx 1 (rain)": 96,
-    "fx 2 (soundtrack)": 97,
-    "fx 3 (crystal)": 98,
-    "fx 4 (atmosphere)": 99,
-    "fx 5 (brightness)": 100,
-    "fx 6 (goblins)": 101,
-    "fx 7 (echoes)": 102,
-    "fx 8 (sci-fi)": 103,
-
-    # Ethnic
-    "sitar": 104,
-    "banjo": 105,
-    "shamisen": 106,
-    "koto": 107,
-    "kalimba": 108,
-    "bag pipe": 109,
-    "fiddle": 110,
-    "shanai": 111,
-
-    # Percussive
-    "tinkle bell": 112,
-    "agogô": 113,
-    "steel drums": 114,
-    "woodblock": 115,
-    "taiko drum": 116,
-    "melodic tom": 117,
-    "synth drum": 118,
-    "reverse cymbal": 119,
-
-    # Sound Effects
-    "guitar fret noise": 120,
-    "breath noise": 121,
-    "seashore": 122,
-    "bird tweet": 123,
-    "telephone ring": 124,
-    "helicopter": 125,
-    "applause": 126,
-    "gunshot": 127,
+    "Piano": [
+        ("Acoustic Grand Piano", 0),
+        ("Bright Acoustic Piano", 1),
+        ("Electric Grand Piano", 2),
+        ("Honky Tonk Piano", 3),
+        ("Electric Piano 1", 4),
+        ("Electric Piano 2", 5),
+        ("Harpsichord", 6),
+        ("Clavinet", 7)
+    ],
+    "Chromatic Percussion": [
+        ("Celesta", 8),
+        ("Glockenspiel", 9),
+        ("Music Box", 10),
+        ("Vibraphone", 11),
+        ("Marimba", 12),
+        ("Xylophone", 13),
+        ("Tubular Bells", 14),
+        ("Dulcimer", 15)
+    ],
+    "Organ": [
+        ("Drawbar Organ", 16),
+        ("Percussive Organ", 17),
+        ("Rock Organ", 18),
+        ("Church Organ", 19),
+        ("Reed Organ", 20),
+        ("Accordion", 21),
+        ("Harmonica", 22),
+        ("Tango Accordion", 23)
+    ],
+    "Guitar": [
+        ("Acoustic Guitar Nylon", 24),
+        ("Acoustic Guitar Steel", 25),
+        ("Electric Guitar Jazz", 26),
+        ("Electric Guitar Clean", 27),
+        ("Electric Guitar Muted", 28),
+        ("Overdriven Guitar", 29),
+        ("Distortion Guitar", 30),
+        ("Guitar Harmonics", 31)
+    ],
+    "Bass": [
+        ("Acoustic Bass", 32),
+        ("Electric Bass Finger", 33),
+        ("Electric Bass Pick", 34),
+        ("Fretless Bass", 35),
+        ("Slap Bass 1", 36),
+        ("Slap Bass 2", 37),
+        ("Synth Bass 1", 38),
+        ("Synth Bass 2", 39)
+    ],
+    "Strings": [
+        ("Violin", 40),
+        ("Viola", 41),
+        ("Cello", 42),
+        ("Contrabass", 43),
+        ("Tremolo Strings", 44),
+        ("Pizzicato Strings", 45),
+        ("Orchestral Harp", 46),
+        ("Timpani", 47)
+    ],
+    "Ensemble": [
+        ("String Ensemble 1", 48),
+        ("String Ensemble 2", 49),
+        ("Synth Strings 1", 50),
+        ("Synth Strings 2", 51),
+        ("Choir Aahs", 52),
+        ("Voice Oohs", 53),
+        ("Synth Choir", 54),
+        ("Orchestra Hit", 55)
+    ],
+    "Brass": [
+        ("Trumpet", 56),
+        ("Trombone", 57),
+        ("Tuba", 58),
+        ("Muted Trumpet", 59),
+        ("French Horn", 60),
+        ("Brass Section", 61),
+        ("Synth Brass 1", 62),
+        ("Synth Brass 2", 63)
+    ],
+    "Reed": [
+        ("Soprano Sax", 64),
+        ("Alto Sax", 65),
+        ("Tenor Sax", 66),
+        ("Baritone Sax", 67),
+        ("Oboe", 68),
+        ("English Horn", 69),
+        ("Bassoon", 70),
+        ("Clarinet", 71)
+    ],
+    "Pipe": [
+        ("Piccolo", 72),
+        ("Flute", 73),
+        ("Recorder", 74),
+        ("Pan Flute", 75),
+        ("Blown Bottle", 76),
+        ("Shakuhachi", 77),
+        ("Whistle", 78),
+        ("Ocarina", 79)
+    ],
+    "Synth Lead": [
+        ("Lead 1 Square", 80),
+        ("Lead 2 Sawtooth", 81),
+        ("Lead 3 Calliope", 82),
+        ("Lead 4 Chiff", 83),
+        ("Lead 5 Charang", 84),
+        ("Lead 6 Voice", 85),
+        ("Lead 7 Fifths", 86),
+        ("Lead 8 Bass And Lead", 87)
+    ],
+    "Synth Pad": [
+        ("Pad 1 New Age", 88),
+        ("Pad 2 Warm", 89),
+        ("Pad 3 Polysynth", 90),
+        ("Pad 4 Choir", 91),
+        ("Pad 5 Bowed", 92),
+        ("Pad 6 Metallic", 93),
+        ("Pad 7 Halo", 94),
+        ("Pad 8 Sweep", 95)
+    ],
+    "Synth Effects": [
+        ("FX 1 Rain", 96),
+        ("FX 2 Soundtrack", 97),
+        ("FX 3 Crystal", 98),
+        ("FX 4 Atmosphere", 99),
+        ("FX 5 Brightness", 100),
+        ("FX 6 Goblins", 101),
+        ("FX 7 Echoes", 102),
+        ("FX 8 Sci Fi", 103)
+    ],
+    "Ethnic": [
+        ("Sitar", 104),
+        ("Banjo", 105),
+        ("Shamisen", 106),
+        ("Koto", 107),
+        ("Kalimba", 108),
+        ("Bag Pipe", 109),
+        ("Fiddle", 110),
+        ("Shanai", 111)
+    ],
+    "Percussive": [
+        ("Tinkle Bell", 112),
+        ("Agogo", 113),
+        ("Steel Drums", 114),
+        ("Woodblock", 115),
+        ("Taiko Drum", 116),
+        ("Melodic Tom", 117),
+        ("Synth Drum", 118),
+        ("Reverse Cymbal", 119)
+    ],
+    "Sound Effects": [
+        ("Guitar Fret Noise", 120),
+        ("Breath Noise", 121),
+        ("Seashore", 122),
+        ("Bird Tweet", 123),
+        ("Telephone Ring", 124),
+        ("Helicopter", 125),
+        ("Applause", 126),
+        ("Gunshot", 127)
+    ]
 }
