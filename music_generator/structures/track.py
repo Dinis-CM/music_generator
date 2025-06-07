@@ -1,3 +1,4 @@
+import math
 from copy import deepcopy
 from music_generator.structures.midi_instrument_table import MIDI_INSTRUMENT_TABLE
 
@@ -33,16 +34,21 @@ class Track:
 
     def set_octave(self, octave):
         self.octave = octave
-        for e in self.excerpts:
-            for msg in e.messages:
-                msg.note += 12 * (octave + 1)
-                msg.note = max(0, min(127, msg.note))  # Clamp to MIDI range
+        all_messages = [msg for excerpt in self.input_excerpts.excerpts for msg in excerpt.messages]
+        if not all_messages:
+            return
+        LowestNote = min(all_messages, key=lambda x: x.note)
+        offset = 12 * math.floor(LowestNote.note / 12)
+        for msg in all_messages:
+            msg.note = msg.note - offset
+            msg.note = msg.note + ((octave + 1) * 12)
+            msg.note = max(0, min(127, msg.note))
 
     def add_excerpt(self, excerpt):
         self.excerpts.append(deepcopy(excerpt))
 
     def check_probabilities(self):
-        total = sum(getattr(e, "probability", 1/len(self.excerpts)) for e in self.excerpts)
+        total = sum(self.probabilities)
         if total != 1:
             return False
         return True

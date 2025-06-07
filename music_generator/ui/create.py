@@ -3,6 +3,7 @@ import ttkbootstrap as ttk
 from music_generator.structures import Track
 from music_generator.structures.midi_instrument_table import MIDI_INSTRUMENT_TABLE
 from music_generator.structures.probability_presets import PROBABILITY_PRESETS_TABLE
+from music_generator.files import generate
 
 
 def create_window(height, width, title):
@@ -12,17 +13,16 @@ def create_window(height, width, title):
     root.resizable(False, False)
     return root
 
-def create_notebook(master, input_excerpts):
-    max_tracks = 6
-    Notebook = ttk.Notebook(master)
-    Tracks = [Track(f"Track {i+1}", input_excerpts) for i in range(max_tracks)]
-    Frames = [ttk.Frame(Notebook) for _ in range(max_tracks)]
+def create_notebook(master, composition, tracks):
     
-    for i in range(len(Tracks)):
-        create_notebook_tab(Notebook, Frames, Tracks, i)
+    notebook = ttk.Notebook(master)
+    Frames = [ttk.Frame(notebook) for _ in range(composition.max_tracks)]
     
-    Notebook.pack(pady=20)
-    return Notebook, Tracks
+    for i in range(len(tracks)):
+        create_notebook_tab(notebook, Frames, tracks, i)
+    
+    notebook.pack(pady=20)
+    return notebook, tracks
 
 def create_notebook_tab(Notebook, frame, track, idx):
     Notebook.add(frame[idx], text=f'Track {idx+1}')
@@ -114,10 +114,18 @@ def create_probability_table(parent, track):
         prob_bars.append(bar)
 
         def on_prob_change(var=prob_var, idx=i):
-            val = float(var.get())
-            if 0 <= val <= 1:
-                track.probabilities[idx] = val
-                prob_bars[idx]['value'] = val
+            val_str = var.get()
+            if val_str.strip() == "":
+                prob_bars[idx]['value'] = 0
+                track.probabilities[idx] = 0
+                return
+            try:
+                val = float(val_str)
+                if 0 <= val <= 1:
+                    track.probabilities[idx] = val
+                    prob_bars[idx]['value'] = val
+            except ValueError:
+                pass
 
         prob_var.trace_add('write', lambda *args, var=prob_var, idx=i: on_prob_change(var, idx))
     return prob_bars, prob_entries
@@ -139,6 +147,83 @@ def create_probability_preset_menu(frame, track, prob_bars, prob_entries):
 
     menubutton = ttk.Menubutton(frame, text="Probability Presets", menu=preset_menu)
     menubutton.pack(pady=10)
+
+def create_boxes(master, composition):
+    outer_frame = ttk.Frame(master)
+    outer_frame.pack(pady=20, fill='both', expand=True)
+
+    name_var = ttk.StringVar(value=composition.name)
+    bpm_var = ttk.StringVar(value=str(composition.bpm))
+    length_var = ttk.StringVar(value=str(composition.length))
+
+    name_label = ttk.Label(outer_frame, text="Composition Name:")
+    name_label.pack()
+    name_entry = ttk.Entry(outer_frame, textvariable=name_var)
+    name_entry.pack(pady=5)
+
+    bpm_label = ttk.Label(outer_frame, text="BPM:")
+    bpm_label.pack()
+    bpm_entry = ttk.Entry(outer_frame, textvariable=bpm_var)
+    bpm_entry.pack(pady=5)
+
+    length_label = ttk.Label(outer_frame, text="Composition Length:")
+    length_label.pack()
+    length_entry = ttk.Entry(outer_frame, textvariable=length_var)
+    length_entry.pack(pady=5)
+
+    text_label = ttk.Label(outer_frame, text="Tracks")
+    text_label.pack()
+
+    selected = ttk.StringVar(value=composition.max_tracks)
+
+    def option_track(opt):
+        selected.set(str(opt+1))
+        composition.set_max_tracks(opt+1)
+
+    menubutton = ttk.Menubutton(outer_frame, textvariable=selected)
+    menu = tk.Menu(menubutton, tearoff=0)
+
+    for opt in range(6):
+        menu.add_command(label=opt+1,command=lambda val=opt: option_track(val))
+    menubutton["menu"] = menu
+    menubutton.pack(pady=20)
+
+    # Store the StringVars for later use
+    composition._name_var = name_var
+    composition._bpm_var = bpm_var
+    composition._length_var = length_var
+
+    return composition
+
+def create_button(master, Composition, Tracks):
+    outer_frame = ttk.Frame(master)
+    outer_frame.pack(pady=20)
+
+    status_box = ttk.Label(outer_frame, text="", width=30, font=("Arial", 10), anchor="center")
+    status_box.pack(pady=5)
+
+    def on_generate():
+        print("Generate button pressed")  # Debug print
+        for idx, track in enumerate(Tracks[:Composition.max_tracks]):
+            if not track.check_probabilities():
+                total = sum(track.probabilities)
+                status_box.config(text=f"Sum in track {idx+1} {total:.4f} (should be 1)", bootstyle="danger")
+                return 
+
+        Composition.name = Composition._name_var.get()
+        try:
+            Composition.bpm = int(Composition._bpm_var.get())
+        except ValueError:
+            Composition.bpm = 120
+        try:
+            Composition.length = int(Composition._length_var.get())
+        except ValueError:
+            Composition.length = 16
+        generate(Composition, Tracks)
+        status_box.config(text="Track generated succesfully!", bootstyle="success")
+
+    export_button = ttk.Button(outer_frame, text="Generate Composition", command=on_generate)
+    export_button.pack()
 
 
 

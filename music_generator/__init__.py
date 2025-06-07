@@ -10,7 +10,8 @@ from .structures import(
 
 from .files import(
     import_excerpts,
-    export_file
+    export_file,
+    generate
 )
 
 from .ui import(
@@ -20,7 +21,9 @@ from .ui import(
     create_octave_list,
     create_instrument_list,
     create_probability_table,
-    create_probability_preset_menu
+    create_probability_preset_menu,
+    create_boxes,
+    create_button
 )
 
 from .tests import(
