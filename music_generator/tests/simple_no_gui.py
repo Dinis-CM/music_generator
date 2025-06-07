@@ -1,4 +1,5 @@
 import random
+import os
 from music_generator import import_excerpts, Composition, Track, export_file
 
 def simple_no_gui_test():
@@ -20,5 +21,5 @@ def simple_no_gui_test():
         track.set_octave(n+2)
         track.set_name(name[n])
         composition.add_track(track)
-
-    export_file("output/excerpt.mid", composition)
+    file_path = os.path.join("output", f"{composition.name}.mid")
+    export_file(file_path, composition)

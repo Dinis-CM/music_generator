@@ -1,6 +1,7 @@
 from mido import MidiFile, MidiTrack, Message, MetaMessage, bpm2tempo
 import random
 import os
+import re
  
 
 def export_file(file_path, composition):
@@ -15,7 +16,7 @@ def export_file(file_path, composition):
                 track.append(Message(type=msg.type, channel=msg.channel, note=msg.note, velocity=msg.velocity, time=msg.time))
         track.append(MetaMessage('end_of_track', time=1))
         mid.tracks.append(track)
-    print(mid, file=open('debug/debug_output.txt', mode='w'))
+    print(mid, file=open(os.path.join("debug", "debug_output.txt"), mode='w', encoding="utf-8"))
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     mid.save(file_path)
 
@@ -57,6 +58,6 @@ def generate(composition, tracks):
             tracks[n].add_excerpt(chosen_excerpt)        
         composition.add_track(tracks[n])
 
-    file_path = f"output/{composition.name}.mid"
+    composition.name=re.sub(r'[^A-Za-z0-9_\-\.]', '_', composition.name)
+    file_path = os.path.join("output", f"{composition.name}.mid")
     export_file(file_path, composition)
-    return file_path

@@ -3,7 +3,7 @@ import datetime
 class Composition:
     def __init__(self):
         date = datetime.datetime.now()
-        self.name = f"Música Aleatória {date.year}-{date.month:02d}-{date.day:02d}_{date.hour:02d}:{date.minute:02d}"
+        self.name = f"Musica_Aleatoria_{date.year}-{date.month:02d}-{date.day:02d}_{date.hour:02d}:{date.minute:02d}"
         self.bpm = 120
         self.length = 16
         self.max_tracks = 6
