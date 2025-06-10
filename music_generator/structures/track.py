@@ -32,6 +32,16 @@ class Track:
         probability = 1 / len(self.input_excerpts.excerpts)
         self.probabilities = [probability] * len(self.input_excerpts.excerpts)
 
+    def set_first_only_probability(self):
+        self.probabilities = [1 if i == 0 else 0 for i in range(len(self.input_excerpts.excerpts))]
+
+    def set_last_only_probability(self):
+        self.probabilities = [1 if i == len(self.input_excerpts.excerpts) - 1 else 0 for i in range(len(self.input_excerpts.excerpts))]
+
+    def set_binomial_probabilities(self, p):
+        n = len(self.input_excerpts.excerpts)
+        self.probabilities = [math.comb(n - 1, k) * (p ** k) * ((1 - p) ** (n - 1 - k)) for k in range(n)]
+
     def set_octave(self, octave):
         self.octave = octave
         all_messages = [msg for excerpt in self.input_excerpts.excerpts for msg in excerpt.messages]
