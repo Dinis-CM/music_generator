@@ -10,6 +10,5 @@ PROBABILITY_PRESETS_TABLE = {
     "Binomial, p=0.6": lambda track: track.set_binomial_probabilities(0.6),
     "Binomial, p=0.7": lambda track: track.set_binomial_probabilities(0.7),
     "Binomial, p=0.8": lambda track: track.set_binomial_probabilities(0.8),
-    "Binomial, p=0.9": lambda track: track.set_binomial_probabilities(0.9),
-
+    "Binomial, p=0.9": lambda track: track.set_binomial_probabilities(0.9)
 }

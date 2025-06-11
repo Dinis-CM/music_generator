@@ -6,7 +6,9 @@ if __name__ == "__main__":
     print(len(sys.argv))
     if len(sys.argv) > 1 and sys.argv[1] == "--test-generator":
         simple_no_gui_test()
-    if len(sys.argv) > 1 and sys.argv[1] == "--test-gui":
+    elif len(sys.argv) > 1 and sys.argv[1] == "--test-gui":
+        simple_gui_test()
+    elif len(sys.argv) == 1:
         simple_gui_test()
     else:
         print("Usage: python run.py [--test-generator | --test-gui]")

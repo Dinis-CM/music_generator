@@ -1,4 +1,4 @@
-from music_generator import *
+from music_generator import Composition, Track, import_excerpts, create_window
 import tkinter as tk
 import ttkbootstrap as ttk
 import os
@@ -14,10 +14,6 @@ def simple_gui_test():
     
     tracks = [Track(f"Track {i+1}", input_excerpts) for i in range(composition.max_tracks)]
 
-    root = create_window(1000, 1000, "Music Generator Test GUI")
-    _, tracks = create_notebook(root, composition, tracks)
-    composition = create_boxes(root, composition)
-    composition = create_button(root, composition, tracks)
-    
+    root, composition, tracks = create_window(800, 500, "Music Generator Test GUI", composition, tracks)
 
     root.mainloop()
