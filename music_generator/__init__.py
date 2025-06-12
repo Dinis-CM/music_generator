@@ -26,7 +26,7 @@ from .ui import(
     create_controls
 )
 
-from .tests import(
+from .main import(
     simple_no_gui_test,
     simple_gui_test
 )
